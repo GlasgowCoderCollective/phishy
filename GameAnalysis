@@ -1,0 +1,8 @@
+You can play the game at www.fishy-flash-game.com
+
+Fishy is an old flash game where you compete to become the biggest fish in the pond.
+
+You move your fish using the arrow keys. Your fish has a little momentum to its movement.
+
+Other fish are generated to come in from the side of the screen at various sizes and speeds. If you collide with a bigger fish, it's game over. You must collide with smaller fish to "eat" them and grow. Every time you eat a fish you become slightly larger which means you can eat more fish but also it becomes harder to dodge the bigger fish.
+
