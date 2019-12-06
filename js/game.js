@@ -21,11 +21,6 @@ var config = {
     }
   };
   
-
-  const player_max_speed = 800;
-  const player_max_accel = 1000;
-  const player_touch_min_distance = 200; //for touch control - sets minimum distance a touch must be from player before player moves
-  const player_drag = 0.95;
   var game = new Phaser.Game(config);
   var player;
   var cursors;
@@ -63,6 +58,16 @@ var config = {
   }
 
   function update(){
+    doPlayerControls();
+    doPlayerWorldBoundsCollisions(); 
+  }
+
+  const player_max_speed = 800;
+  const player_max_accel = 1000;
+  const player_touch_min_distance = 200; // min distance a touch must be from player before player moves
+  const player_drag = 0.95;
+
+  function doPlayerControls(){
     if(!pointer.isDown){
       if (cursors.left.isDown) {
           player.setAccelerationX(-1 * player_max_accel);
@@ -90,17 +95,17 @@ var config = {
       else
         player.setAcceleration(0, 0);
     }
+  }
 
-    // handle collision with world bounds manually, as player.setCollideWorldBounds
-    // does not allow us to wrap the player around the x axis
+  function doPlayerWorldBoundsCollisions(){
+    // Wrap player around the x-axis if they go off screen
     if(player.body.position.x > game.config.width){
       player.setX(0 - (player.body.width / 2));
     }else if(player.body.position.x < -player.body.width){
       player.setX(game.config.width);
     }
 
-    //clamping player.body.position to 0 or game.config.height seems to stick the player to the top or bottom,
-    //but zeroing the velocity and reversing acceleration seems to work.
+    // Stop player at top or bottom and give a little bounce the other way
     if(player.body.position.y < 0){
       player.setVelocityY(0);
       player.setAccelerationY(player_max_accel);   
@@ -108,6 +113,4 @@ var config = {
       player.setVelocityY(0);
       player.setAccelerationY(-1 * player_max_accel);   
     }
-
-
   }
