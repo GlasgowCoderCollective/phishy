@@ -1,8 +1,12 @@
 var config = {
     type: Phaser.AUTO,
-    parent: 'phaser-example',
-    width: 800,
-    height: 600,
+    scale: {
+      mode: Phaser.Scale.FIT,
+      autoCenter: Phaser.Scale.CENTER_BOTH,
+      parent: "game-container",
+      width: 1200,
+      height: 800
+    },
     physics: {
       default: 'arcade',
       arcade: {
@@ -28,7 +32,7 @@ var config = {
     this.load.atlasXML("sprites", "assets/fishSpritesheet.png", "assets/fishSpritesheet.xml");
     
     //create a dark blue to light blue gradient for background
-    var texture = this.textures.createCanvas('ocean_backdrop', 800, 600);
+    var texture = this.textures.createCanvas('ocean_backdrop', game.config.width, game.config.height);
     var context = texture.getContext();
     var grd = context.createLinearGradient(game.config.width / 2, game.config.height, game.config.width / 2, 0);
     grd.addColorStop(0, '#0000FF');
@@ -39,7 +43,7 @@ var config = {
   }
    
   function create() {
-    this.add.image(400, 300, 'ocean_backdrop');
+    this.add.image(game.config.width / 2, game.config.height / 2, 'ocean_backdrop');
 
     player = this.physics.add.sprite(100, 300, 'sprites', 'fishTile_078.png');
     //player.setCollideWorldBounds(true);
