@@ -5,3 +5,22 @@ Fishy is an old flash game where you compete to become the biggest fish in the p
 You move your fish using the arrow keys. Your fish has a little momentum to its movement.
 
 Other fish are generated to come in from the side of the screen at various sizes and speeds. If you collide with a bigger fish, it's game over. You must collide with smaller fish to "eat" them and grow. Every time you eat a fish you become slightly larger which means you can eat more fish but also it becomes harder to dodge the bigger fish.
+
+I've had a look at the tutorial that John based his demo here:
+
+https://phaser.io/tutorials/making-your-first-phaser-3-game/part1
+
+The final game has a character running and jumping around collecting stars and avoiding bouncing bombs.
+You can play it here:
+
+https://phaser.io/examples/v3/view/games/firstgame/part10
+
+We can relate this to the phishy game we wish to create as follows:
+
+The player character moves under player control using keyboard or mouse control.
+
+The demo has two different non-player objects, the star and the bomb. 
+A challenge for us is that we only have one enemy class where smaller fish are eaten and larger fish kill the player. A comparison takes place on collision.
+
+The bombs and the stars both move and we want the other enemy fish to move as well. Their movement is simpler.
+In our game enemy fish are generated constantly at the side of the screen 
